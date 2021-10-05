@@ -31,6 +31,7 @@ class AuthController
                 ->update(['status' => true])) {
                 return APIJsonResponse::statusResponse(true);
             }
+            return APIJsonResponse::error([Errors::INVALID_OTP]);
         }
         return APIJsonResponse::error($customerRequest->getErrors());
     }
@@ -50,15 +51,13 @@ class AuthController
             if (!$customer || !Hash::check($data['password'], $customer->password)) {
                 return APIJsonResponse::error([Errors::CREDENTIALS_DO_NOT_MATCH]);
             }
-            $data = [
+            return APIJsonResponse::success([
                 'name' => $customer->name,
                 'mobile' => $data['mobile'],
                 'token' => $customer->createToken('auth-token')->plainTextToken,
-            ];
-            return APIJsonResponse::success($data);
+            ]);
         }
         return APIJsonResponse::error($customerRequest->getErrors());
-
     }
 
     public function logout()
