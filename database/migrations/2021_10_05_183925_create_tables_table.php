@@ -17,7 +17,7 @@ class CreateTablesTable extends Migration
     {
         Schema::create($this->table, function (Blueprint $table) {
             $table->id();
-            $table->tinyInteger('capacity');
+            $table->unsignedTinyInteger('capacity');
         });
     }
 
