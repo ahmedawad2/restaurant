@@ -6,6 +6,7 @@ use App\Infra\Classes\BusinessLogic\Customers\CustomerRequest;
 use App\Infra\Classes\Common\APIJsonResponse;
 use App\Infra\Classes\Common\Errors;
 use App\Infra\Interfaces\Repositories\Common\CustomerRepositoryInterface;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController
@@ -58,5 +59,17 @@ class AuthController
         }
         return APIJsonResponse::error($customerRequest->getErrors());
 
+    }
+
+    public function logout()
+    {
+        if (Auth::guard('customers')
+            ->user()
+            ->tokens()
+            ->where('id', Auth::guard('customers')->user()->currentAccessToken()->id)
+            ->delete()) {
+            return APIJsonResponse::statusResponse(true);
+        }
+        return APIJsonResponse::statusResponse(false);
     }
 }
