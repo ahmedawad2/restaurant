@@ -20,13 +20,11 @@ class InterfacesBindingServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(ResourceInterface::class, RequestResource::class);
-        $this->app->bind(FilesValidatorInterface::class, Validator::class);
         $this->app->bind(ValidatorInterface::class, Validator::class);
         $this->app->bind(PhoneValidatorInterface::class, PhoneValidator::class);
 
         //repositories
         $this->app->bind(CustomerRepositoryInterface::class, CustomerRepository::class);
-
     }
 
     public function boot()
