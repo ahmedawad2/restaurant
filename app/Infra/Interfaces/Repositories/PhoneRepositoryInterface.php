@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Infra\Interfaces\Repositories\Common;
+namespace App\Infra\Interfaces\Repositories;
 
 
 interface PhoneRepositoryInterface

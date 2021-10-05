@@ -1,9 +1,9 @@
 <?php
 
 
-namespace App\Infra\Repositories\Common;
+namespace App\Infra\Repositories;
 
-use App\Infra\Interfaces\Repositories\Common\CustomerRepositoryInterface;
+use App\Infra\Interfaces\Repositories\CustomerRepositoryInterface;
 use App\Models\Customer;
 
 class CustomerRepository implements CustomerRepositoryInterface

@@ -1,10 +1,10 @@
 <?php
 
 
-namespace App\Infra\Repositories\Common;
+namespace App\Infra\Repositories;
 
 
-use App\Infra\Interfaces\Repositories\Common\PhoneRepositoryInterface;
+use App\Infra\Interfaces\Repositories\PhoneRepositoryInterface;
 use libphonenumber\PhoneNumber;
 
 class PhoneRepository implements PhoneRepositoryInterface

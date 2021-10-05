@@ -4,7 +4,7 @@
 namespace App\Infra\Interfaces\Validators;
 
 
-use App\Infra\Interfaces\Repositories\Common\PhoneRepositoryInterface;
+use App\Infra\Interfaces\Repositories\PhoneRepositoryInterface;
 
 interface PhoneValidatorInterface
 {

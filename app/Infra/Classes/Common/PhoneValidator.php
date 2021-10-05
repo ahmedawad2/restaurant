@@ -4,9 +4,9 @@
 namespace App\Infra\Classes\Common;
 
 
-use App\Infra\Interfaces\Repositories\Common\PhoneRepositoryInterface;
+use App\Infra\Interfaces\Repositories\PhoneRepositoryInterface;
 use App\Infra\Interfaces\Validators\PhoneValidatorInterface;
-use App\Infra\Repositories\Common\PhoneRepository;
+use App\Infra\Repositories\PhoneRepository;
 use libphonenumber\PhoneNumber;
 use libphonenumber\PhoneNumberType;
 use libphonenumber\PhoneNumberUtil;

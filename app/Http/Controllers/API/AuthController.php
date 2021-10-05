@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Infra\Classes\BusinessLogic\Customers\CustomerRequest;
 use App\Infra\Classes\Common\APIJsonResponse;
 use App\Infra\Classes\Common\Errors;
-use App\Infra\Interfaces\Repositories\Common\CustomerRepositoryInterface;
+use App\Infra\Interfaces\Repositories\CustomerRepositoryInterface;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
