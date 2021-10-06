@@ -8,7 +8,6 @@ use App\Models\Table;
 
 class TablesRepository implements TablesRepositoryInterface
 {
-
     private $model;
 
     public function __construct()
@@ -28,18 +27,6 @@ class TablesRepository implements TablesRepositoryInterface
     public function readById(int $id)
     {
         $this->model = $this->model->where('id', $id);
-        return $this;
-    }
-
-    public function activeCustomers(): TablesRepositoryInterface
-    {
-        $this->model = $this->model->where('status', true);
-        return $this;
-    }
-
-    public function inActiveCustomers(): TablesRepositoryInterface
-    {
-        $this->model = $this->model->where('status', false);
         return $this;
     }
 
