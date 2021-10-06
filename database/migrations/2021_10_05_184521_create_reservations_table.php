@@ -30,6 +30,7 @@ class CreateReservationsTable extends Migration
                 ->onDelete('cascade');
 
             $table->dateTime('from');
+            $table->dateTime('to');
             $table->unsignedTinyInteger('status');
             $table->dateTime('created_at');
 
