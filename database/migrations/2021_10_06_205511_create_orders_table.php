@@ -5,7 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CerateOrdersTable extends Migration
+class CreateOrdersTable extends Migration
 {
     private string $table;
 
