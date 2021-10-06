@@ -5,7 +5,7 @@ namespace App\Models;
 
 class Reservation extends Common
 {
-    protected $dates = ['created_at', 'from'];
+    protected $dates = ['created_at', 'from', 'to'];
     protected $guarded = ['id'];
     public $timestamps = false;
 
