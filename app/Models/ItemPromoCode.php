@@ -4,8 +4,9 @@ namespace App\Models;
 
 class ItemPromoCode extends Common
 {
-    public $timestamps = false;
     protected $guarded = ['id'];
+    protected $table = 'item_promo_code';
+    public $timestamps = false;
 
 
     public function item()
