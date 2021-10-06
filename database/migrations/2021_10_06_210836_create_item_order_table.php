@@ -16,7 +16,7 @@ class CreateItemOrderTable extends Migration
     public function up()
     {
         Schema::create($this->table, function (Blueprint $table) {
-            $table->id('id');
+            $table->id();
 
             $table->unsignedInteger('item_id');
             $table->foreign('item_id')->references('id')
@@ -27,7 +27,6 @@ class CreateItemOrderTable extends Migration
             $table->foreign('order_id')->references('id')
                 ->on('orders')
                 ->onDelete('cascade');
-
 
             $table->index('item_id');
             $table->index('order_id');
