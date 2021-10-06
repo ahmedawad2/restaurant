@@ -4,13 +4,13 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateItemsSlotsTable extends Migration
+class CreateItemSlotsTable extends Migration
 {
     private string $table;
 
     public function __construct()
     {
-        $this->table = 'items_slots';
+        $this->table = 'item_slots';
     }
 
     public function up()
@@ -23,6 +23,7 @@ class CreateItemsSlotsTable extends Migration
                 ->on('items')
                 ->onDelete('cascade');
 
+            $table->unsignedTinyInteger('day');
             $table->time('from');
             $table->time('to');
 

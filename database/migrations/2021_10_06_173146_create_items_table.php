@@ -18,7 +18,7 @@ class CreateItemsTable extends Migration
         Schema::create($this->table, function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('price');
+            $table->unsignedFloat('price');
             $table->unsignedFloat('qty');
         });
     }
