@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Auth;
 
 class ReservationsController
 {
-    public function make(ValidatorInterface $validator, TablesRepositoryInterface $tablesRepository
-        , ReservationsRepositoryInterface   $reservationsRepository)
+    public function store(ValidatorInterface $validator, TablesRepositoryInterface $tablesRepository
+        , ReservationsRepositoryInterface    $reservationsRepository)
     {
         $validator->integer(['capacity'])->min('capacity', 1);
         $validator->matchDateFormat('from', Constants::RESERVATION_DATE_FORMAT);
