@@ -3,17 +3,17 @@
 
 namespace App\Infra\Repositories;
 
-use App\Infra\Interfaces\Repositories\CustomerRepositoryInterface;
-use App\Models\Customer;
+use App\Infra\Interfaces\Repositories\ReservationsRepositoryInterface;
+use App\Models\Reservation;
 
-class CustomerRepository implements CustomerRepositoryInterface
+class ReservationsRepository implements ReservationsRepositoryInterface
 {
 
     private $model;
 
     public function __construct()
     {
-        $this->model = new Customer();
+        $this->model = new Reservation();
     }
 
     public function create(array $data = [])
@@ -31,19 +31,7 @@ class CustomerRepository implements CustomerRepositoryInterface
         return $this;
     }
 
-    public function activeCustomers(): CustomerRepositoryInterface
-    {
-        $this->model = $this->model->where('status', true);
-        return $this;
-    }
-
-    public function inActiveCustomers(): CustomerRepositoryInterface
-    {
-        $this->model = $this->model->where('status', false);
-        return $this;
-    }
-
-    public function select(array $columns): CustomerRepositoryInterface
+    public function select(array $columns): ReservationsRepositoryInterface
     {
         $this->model = $this->model->addSelect($columns);
         return $this;
