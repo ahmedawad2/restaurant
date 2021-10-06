@@ -19,9 +19,9 @@ class ReservationsSeeder extends Seeder
         $tablesCount = Table::count();
         $reservationStatuses = ReservationStatuses::allStatuses();
 
-        for ($j = 0; $j < 1000; $j++) {
+        for ($j = 0; $j < 100; $j++) {
             $data = [];
-            for ($i = 0; $i < 1000; $i++) {
+            for ($i = 0; $i < 10000; $i++) {
                 shuffle($reservationStatuses);
                 $from = Carbon::now()->addDays(rand(-3, 5))
                     ->addHours(rand(0, 23))
