@@ -19,19 +19,23 @@ class ReservationsSeeder extends Seeder
         $tablesCount = Table::count();
         $reservationStatuses = ReservationStatuses::allStatuses();
 
-        for ($i = 0; $i < 1000; $i++) {
-            shuffle($reservationStatuses);
-            $data[] = [
-                'customer_id' => rand(1, $customersCount),
-                'table_id' => rand(1, $tablesCount),
-                'from' => Carbon::now()->addDay(rand(-3, 5))
-                    ->addHour(rand(0, 23))
-                    ->addMinute(rand(0, 59))
-                    ->addSecond(0, 59),
-                'status' => $reservationStatuses[0],
-            ];
+        for ($j = 0; $j < 1000; $j++) {
+            $data = [];
+            for ($i = 0; $i < 1000; $i++) {
+                shuffle($reservationStatuses);
+                $from = Carbon::now()->addDays(rand(-3, 5))
+                    ->addHours(rand(0, 23))
+                    ->addMinutes(rand(0, 59))
+                    ->addSeconds(rand(0, 59));
+                $data[] = [
+                    'customer_id' => rand(1, $customersCount),
+                    'table_id' => rand(1, $tablesCount),
+                    'from' => $from,
+                    'to' => (clone $from)->addMinutes(rand(30, 120)),
+                    'status' => $reservationStatuses[0],
+                ];
+            }
+            Reservation::insert($data);
         }
-
-        Reservation::insert($data);
     }
 }
