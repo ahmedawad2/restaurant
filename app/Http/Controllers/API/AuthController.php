@@ -31,7 +31,7 @@ class AuthController
                 ->update(['status' => true])) {
                 return APIJsonResponse::statusResponse(true);
             }
-            return APIJsonResponse::error([Errors::INVALID_OTP]);
+            return APIJsonResponse::error(Errors::INVALID_OTP);
         }
         return APIJsonResponse::error($customerRequest->getErrors());
     }
@@ -46,10 +46,10 @@ class AuthController
                 ->select(['id', 'name', 'password', 'status'])
                 ->first();
             if ($customer && !$customer->status) {
-                return APIJsonResponse::error([Errors::ACCOUNT_NEEDS_VERIFICATION]);
+                return APIJsonResponse::error(Errors::ACCOUNT_NEEDS_VERIFICATION);
             }
             if (!$customer || !Hash::check($data['password'], $customer->password)) {
-                return APIJsonResponse::error([Errors::CREDENTIALS_DO_NOT_MATCH]);
+                return APIJsonResponse::error(Errors::CREDENTIALS_DO_NOT_MATCH);
             }
             return APIJsonResponse::success([
                 'name' => $customer->name,
