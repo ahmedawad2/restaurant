@@ -5,6 +5,17 @@ namespace App\Models;
 
 class Reservation extends Common
 {
-    public $timestamps = false;
     protected $dates = ['created_at', 'from'];
+    protected $guarded = ['id'];
+    public $timestamps = false;
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
+
+    public function table()
+    {
+        return $this->belongsTo(Table::class);
+    }
 }
