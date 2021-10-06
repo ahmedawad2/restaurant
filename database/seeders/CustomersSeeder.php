@@ -18,7 +18,7 @@ class CustomersSeeder extends Seeder
         $phonePrefixes = ['11', '10', '12'];
         Customer::truncate();
 
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             shuffle($phonePrefixes);
             $mobile = $phonePrefixes[0] . SerialGenerator::numeric(8);
             $data[] = [

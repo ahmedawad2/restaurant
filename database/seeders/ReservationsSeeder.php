@@ -19,7 +19,7 @@ class ReservationsSeeder extends Seeder
         $tablesCount = Table::count();
         $reservationStatuses = ReservationStatuses::allStatuses();
 
-        for ($j = 0; $j < 100; $j++) {
+        for ($j = 0; $j < 1; $j++) {
             $data = [];
             for ($i = 0; $i < 10000; $i++) {
                 shuffle($reservationStatuses);
