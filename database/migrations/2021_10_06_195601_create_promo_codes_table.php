@@ -16,13 +16,11 @@ class CreatePromoCodesTable extends Migration
     public function up()
     {
         Schema::create($this->table, function (Blueprint $table) {
-            $table->id();
-            $table->string('code', 10)->unique();
+            $table->string('id', 10)->unique();
             $table->unsignedFloat('reward');
             $table->unsignedTinyInteger('type');//1 fixed, 2 percentage.
-            $table->dateTime('from')->nullable();
+            $table->dateTime('from');
             $table->dateTime('to');
-            $table->unsignedInteger('count')->nullable();
         });
     }
 

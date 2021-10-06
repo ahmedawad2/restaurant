@@ -23,7 +23,7 @@ class CreateItemPromoCodesTable extends Migration
                 ->on('items')
                 ->onDelete('cascade');
 
-            $table->unsignedInteger('promo_code_id');
+            $table->string('promo_code_id');
             $table->foreign('promo_code_id')->references('id')
                 ->on('promo_codes')
                 ->onDelete('cascade');
