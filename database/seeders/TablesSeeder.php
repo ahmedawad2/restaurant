@@ -7,7 +7,6 @@ use Illuminate\Database\Seeder;
 
 class TablesSeeder extends Seeder
 {
-
     public function run()
     {
         Table::truncate();
