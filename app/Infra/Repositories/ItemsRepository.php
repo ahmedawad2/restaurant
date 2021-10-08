@@ -86,4 +86,26 @@ class ItemsRepository implements ItemsRepositoryInterface
             });
         return $this;
     }
+
+    public function withValidPromoCodes(array $selectColumns = [], array $inPromoCodes = []): ItemsRepositoryInterface
+    {
+        $this->select(['id']);
+        $this->model = $this->model->with(['validPromoCodes' => function ($q) use ($selectColumns, $inPromoCodes) {
+            if ($inPromoCodes) {
+                $q->whereIn('promo_codes.id', $inPromoCodes);
+            }
+            if ($selectColumns) {
+                $q->select(array_map(function ($column) {
+                    return 'promo_codes.' . $column;
+                }, $selectColumns));
+            }
+        }]);
+        return $this;
+    }
+
+    public function whereIn(string $column, array $values): ItemsRepositoryInterface
+    {
+        $this->model = $this->model->whereIn($column, $values);
+        return $this;
+    }
 }

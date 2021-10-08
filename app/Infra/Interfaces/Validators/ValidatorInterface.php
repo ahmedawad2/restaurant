@@ -21,7 +21,7 @@ interface ValidatorInterface
 
     public function matchDateFormat($input, string $format = Constants::DEFAULT_DATE_FORMAT): ValidatorInterface;
 
-    public function has(array $inputs): bool;
+    public function has(string $input): bool;
 
     public function sent(string $input): bool;
 

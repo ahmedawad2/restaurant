@@ -19,7 +19,7 @@ class PromoCodesSeeder extends Seeder
                 'reward' => rand(20, 50),
                 'type' => rand(1, 2),
                 'from' => Carbon::now()
-                    ->addDays(rand(0, 1))
+                    ->addDays(rand(-6, 1))
                     ->addHours(rand(0, 11))
                     ->addMinutes(rand(0, 59)),
                 'to' => Carbon::now()

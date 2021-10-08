@@ -3,9 +3,17 @@
 namespace App\Models;
 
 
+use App\Infra\Traits\KeyGenerationTrait;
+
 class Order extends Common
 {
-    protected $guarded = ['id'];
+    use KeyGenerationTrait;
+
+    protected static string $keyColumnName = 'id';
+    protected static int $keyLength = 10;
+    protected static string $keyGenerationType = 'alphanumeric';
+
+    protected $guarded = [];
     protected $dates = ['created_at'];
     protected $primaryKey = 'id';
     protected $keyType = 'string';

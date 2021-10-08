@@ -112,13 +112,11 @@ class Validator implements ValidatorInterface
         return $this->resource;
     }
 
-    public function has(array $inputs): bool
+    public function has(string $input): bool
     {
-        foreach ($inputs as $input) {
-            $value = $this->resource->get($input);
-            if (!isset($value)) {
-                return false;
-            }
+        $value = $this->resource->get($input);
+        if (!isset($value)) {
+            return false;
         }
         return true;
     }

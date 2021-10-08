@@ -11,8 +11,12 @@ trait TriggerErrorsTrait
         $this->errors[] = $error;
     }
 
-    private function addErrorToField(string $field, $error)
+    private function addErrorToField(string $field, $error, bool $append = true)
     {
-        $this->errors[$field][] = $error;
+        if ($append) {
+            $this->errors[$field][] = $error;
+        } else {
+            $this->errors[$field] = $error;
+        }
     }
 }

@@ -4,13 +4,13 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateItemOrderTable extends Migration
+class CreateItemOrderPromoCodeTable extends Migration
 {
     private string $table;
 
     public function __construct()
     {
-        $this->table = 'item_order';
+        $this->table = 'item_order_promo_code';
     }
 
     public function up()
@@ -27,6 +27,10 @@ class CreateItemOrderTable extends Migration
             $table->foreign('order_id')->references('id')
                 ->on('orders')
                 ->onDelete('cascade');
+
+            $table->unsignedFloat('price');
+            $table->unsignedFloat('qty');
+            $table->jsonb('promo_codes')->nullable();
 
             $table->index('item_id');
             $table->index('order_id');
