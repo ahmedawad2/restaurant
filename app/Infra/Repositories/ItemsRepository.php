@@ -108,4 +108,9 @@ class ItemsRepository implements ItemsRepositoryInterface
         $this->model = $this->model->whereIn($column, $values);
         return $this;
     }
+
+    public function decrement(string $column, $value)
+    {
+        $this->model->decrement($column, $value);
+    }
 }
