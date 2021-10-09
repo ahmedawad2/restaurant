@@ -18,4 +18,9 @@ class OrdersController
         }
         return APIJsonResponse::error($createOrder->getErrors());
     }
+
+    public function checkout()
+    {
+
+    }
 }
