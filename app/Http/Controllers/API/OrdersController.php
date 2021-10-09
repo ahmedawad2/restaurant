@@ -11,12 +11,8 @@ class OrdersController
     public function store(CreateOrder $createOrder)
     {
         if ($createOrder->validRequest()) {
-            $createOrder->calculate();
             if ($createOrder->create()) {
-                return APIJsonResponse::success([
-                    'total' => $createOrder->getTotal(),
-                    'sub_total' => $createOrder->getSubTotal(),
-                ]);
+                return APIJsonResponse::success($createOrder->getOrder());
             }
             return APIJsonResponse::error(Errors::SERVER_ERROR);
         }
