@@ -20,8 +20,8 @@ class GetItems
     private ReservationsRepositoryInterface $reservationsRepository;
     private Reservation $reservation;
 
-    public function __construct(ValidatorInterface $validator, ItemsRepositoryInterface $itemsRepository
-        , ReservationsRepositoryInterface          $reservationsRepository)
+    public function __construct(ValidatorInterface              $validator, ItemsRepositoryInterface $itemsRepository,
+                                ReservationsRepositoryInterface $reservationsRepository)
     {
         $this->validator = $validator;
         $this->itemsRepository = $itemsRepository;

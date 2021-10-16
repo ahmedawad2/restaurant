@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Infra\Classes\BusinessLogic\Orders\CheckoutOrder;
 use App\Infra\Classes\BusinessLogic\Orders\CreateOrder;
 use App\Infra\Classes\Common\APIJsonResponse;
 use App\Infra\Classes\Common\Errors;
@@ -19,8 +20,11 @@ class OrdersController
         return APIJsonResponse::error($createOrder->getErrors());
     }
 
-    public function checkout()
+    public function checkout(CheckoutOrder $checkoutOrder)
     {
-
+        if ($checkoutOrder->validate()) {
+            return $checkoutOrder->getDetails();
+        }
+        return APIJsonResponse::error($checkoutOrder->getErrors());
     }
 }
