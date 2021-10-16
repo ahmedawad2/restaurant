@@ -19,5 +19,15 @@ class Order extends Common
     protected $keyType = 'string';
     public $timestamps = false;
     public $incrementing = false;
+
+    public function reservation()
+    {
+        return $this->belongsTo(Reservation::class);
+    }
+
+    public function itemsPromoCodes()
+    {
+        return $this->hasMany(ItemOrderPromoCode::class);
+    }
 }
 
