@@ -7,6 +7,7 @@ namespace App\Providers;
 use App\Infra\Classes\Common\PhoneValidator;
 use App\Infra\Interfaces\Repositories\CustomerRepositoryInterface;
 use App\Infra\Interfaces\Repositories\ItemsOrdersPromoCodesRepositoryInterface;
+use App\Infra\Interfaces\Repositories\ItemsPromoCodesRepositoryInterface;
 use App\Infra\Interfaces\Repositories\ItemsRepositoryInterface;
 use App\Infra\Interfaces\Repositories\OrdersRepositoryInterface;
 use App\Infra\Interfaces\Repositories\ReservationsRepositoryInterface;
@@ -16,6 +17,7 @@ use App\Infra\Interfaces\Validators\PhoneValidatorInterface;
 use App\Infra\Interfaces\Validators\ValidatorInterface;
 use App\Infra\Repositories\CustomerRepository;
 use App\Infra\Repositories\ItemsOrdersPromoCodesRepository;
+use App\Infra\Repositories\ItemsPromoCodesRepository;
 use App\Infra\Repositories\ItemsRepository;
 use App\Infra\Repositories\OrdersRepository;
 use App\Infra\Repositories\ReservationsRepository;
@@ -39,6 +41,7 @@ class InterfacesBindingServiceProvider extends ServiceProvider
         $this->app->bind(ItemsRepositoryInterface::class, ItemsRepository::class);
         $this->app->bind(OrdersRepositoryInterface::class, OrdersRepository::class);
         $this->app->bind(ItemsOrdersPromoCodesRepositoryInterface::class, ItemsOrdersPromoCodesRepository::class);
+        $this->app->bind(ItemsPromoCodesRepositoryInterface::class, ItemsPromoCodesRepository::class);
     }
 
     public function boot()
