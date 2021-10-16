@@ -25,7 +25,7 @@ class ItemsOrdersPromoCodesRepository implements ItemsOrdersPromoCodesRepository
         }
     }
 
-    public function readById(int $id): ItemsOrdersPromoCodesRepositoryInterface
+    public function readById($id): ItemsOrdersPromoCodesRepositoryInterface
     {
         $this->model = $this->model->where('id', $id);
         return $this;

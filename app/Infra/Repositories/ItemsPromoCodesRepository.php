@@ -3,17 +3,17 @@
 
 namespace App\Infra\Repositories;
 
-use App\Infra\Interfaces\Repositories\CustomerRepositoryInterface;
-use App\Models\Customer;
+use App\Infra\Interfaces\Repositories\ItemsPromoCodesRepositoryInterface;
+use App\Models\ItemPromoCode;
 
-class CustomerRepository implements CustomerRepositoryInterface
+class ItemsPromoCodesRepository implements ItemsPromoCodesRepositoryInterface
 {
 
     private $model;
 
     public function __construct()
     {
-        $this->model = new Customer();
+        $this->model = new ItemPromoCode();
     }
 
     public function create(array $data = [])
@@ -31,19 +31,8 @@ class CustomerRepository implements CustomerRepositoryInterface
         return $this;
     }
 
-    public function activeCustomers(): CustomerRepositoryInterface
-    {
-        $this->model = $this->model->where('status', true);
-        return $this;
-    }
 
-    public function inActiveCustomers(): CustomerRepositoryInterface
-    {
-        $this->model = $this->model->where('status', false);
-        return $this;
-    }
-
-    public function select(array $columns): CustomerRepositoryInterface
+    public function select(array $columns): ItemsPromoCodesRepositoryInterface
     {
         $this->model = $this->model->addSelect($columns);
         return $this;
@@ -77,5 +66,16 @@ class CustomerRepository implements CustomerRepositoryInterface
         } catch (\Exception $e) {
             return false;
         }
+    }
+
+    public function whereIn(string $column, array $values): ItemsPromoCodesRepositoryInterface
+    {
+        $this->model = $this->model->whereIn($column, $values);
+        return $this;
+    }
+
+    public function decrement(string $column, $value)
+    {
+        $this->model->decrement($column, $value);
     }
 }

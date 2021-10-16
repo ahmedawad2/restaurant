@@ -25,7 +25,7 @@ class ReservationsRepository implements ReservationsRepositoryInterface
         }
     }
 
-    public function readById(int $id)
+    public function readById($id)
     {
         $this->model = $this->model->where('id', $id);
         return $this;

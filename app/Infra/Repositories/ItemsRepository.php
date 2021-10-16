@@ -6,15 +6,18 @@ namespace App\Infra\Repositories;
 use App\Infra\Interfaces\Repositories\ItemsRepositoryInterface;
 use App\Models\Item;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class ItemsRepository implements ItemsRepositoryInterface
 {
 
     private $model;
+    private string $table;
 
     public function __construct()
     {
         $this->model = new Item();
+        $this->table = $this->model->getTable();
     }
 
     public function create(array $data = [])
@@ -26,7 +29,7 @@ class ItemsRepository implements ItemsRepositoryInterface
         }
     }
 
-    public function readById(int $id)
+    public function readById($id)
     {
         $this->model = $this->model->where('id', $id);
         return $this;
@@ -112,5 +115,19 @@ class ItemsRepository implements ItemsRepositoryInterface
     public function decrement(string $column, $value)
     {
         $this->model->decrement($column, $value);
+    }
+
+    public function decreaseQty(array $idsWithQty): ItemsRepositoryInterface
+    {
+        $query = 'update ' . $this->table . ' set qty = case id ';
+        foreach ($idsWithQty as $itemId => $qty) {
+            $query .= ' when ' . $itemId . ' then qty-' . $qty;
+        }
+        $query .= ' end ';
+        $query .= 'where id in(';
+        $query .= implode(',', array_keys($idsWithQty));
+        $query .= ')';
+        DB::statement($query);
+        return $this->reset();
     }
 }

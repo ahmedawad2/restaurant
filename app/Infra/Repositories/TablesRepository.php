@@ -24,7 +24,7 @@ class TablesRepository implements TablesRepositoryInterface
         }
     }
 
-    public function readById(int $id)
+    public function readById($id)
     {
         $this->model = $this->model->where('id', $id);
         return $this;
