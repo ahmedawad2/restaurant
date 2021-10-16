@@ -26,6 +26,7 @@ class CreateOrdersTable extends Migration
 
             $table->decimal('total');
             $table->decimal('sub_total');
+            $table->boolean('paid')->default(false);
             $table->dateTime('created_at');
 
             $table->index('reservation_id');
