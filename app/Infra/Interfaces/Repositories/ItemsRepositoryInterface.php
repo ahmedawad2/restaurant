@@ -14,5 +14,7 @@ interface ItemsRepositoryInterface extends CrudInterface, RepositoryInterface, U
 {
     public function available(int $day = null, string $fromTime = null, $toTime = null): ItemsRepositoryInterface;
 
+    public function decreaseQty(array $idsWithQty): ItemsRepositoryInterface;
+
     public function withValidPromoCodes(array $selectColumns, array $inPromoCodes): ItemsRepositoryInterface;
 }

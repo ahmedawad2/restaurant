@@ -6,5 +6,5 @@ use App\Infra\Interfaces\Resources\ResourceInterface;
 
 interface ReadByIdInterface
 {
-    public function readById(int $id);
+    public function readById($id);
 }
