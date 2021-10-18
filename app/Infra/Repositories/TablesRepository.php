@@ -3,8 +3,10 @@
 
 namespace App\Infra\Repositories;
 
+use App\Infra\Classes\BusinessLogic\Reservations\ReservationStatuses;
 use App\Infra\Interfaces\Repositories\TablesRepositoryInterface;
 use App\Models\Table;
+use Illuminate\Support\Facades\DB;
 
 class TablesRepository implements TablesRepositoryInterface
 {
@@ -13,6 +15,17 @@ class TablesRepository implements TablesRepositoryInterface
     public function __construct()
     {
         $this->model = new Table();
+    }
+
+    private function prepareSearchQuery(string $from, string $to, int $capacity): string
+    {
+        return "id not in (select distinct table_id from reservations where reservations.from >= '"
+            . $from
+            . "' and reservations.to <= '"
+            . $to
+            . "' and reservations.status in (%s)) and capacity = "
+            . $capacity
+            . " order by capacity asc limit 1";
     }
 
     public function create(array $data = [])
@@ -77,24 +90,49 @@ class TablesRepository implements TablesRepositoryInterface
 //                    ->where('to', '<=', $to)
 //                    ->whereIn('status', [1, 2]);
 //            })
-//                ->where('capacity', '>=', $capacity)
+//                ->where('capacity', '=', $capacity)
 //                ->orderBy('capacity');
 //        return $this;
 //    }
 
-    public function toBeReserved(string $from, string $to, int $capacity): ?array
+    public function forActiveReservation(string $from, string $to, int $capacity): ?array
     {
         $table =
-            $this->model->whereRaw("id not in (select distinct table_id
-                 from reservations
-                 where reservations.from >= '"
-                . $from . "'
-                   and reservations.to <= '"
-                . $to . "'
-                   and reservations.status in (1, 2)) and capacity = "
-                . $capacity . " order by capacity asc limit 1")->get();
+            $this->model->whereRaw(
+                sprintf(
+                    $this->prepareSearchQuery($from, $to, $capacity),
+                    ReservationStatuses::RESERVATION_ACTIVE . ',' . ReservationStatuses::RESERVATION_SETTLED
+                )
+            )->get();
         return count($table)
             ? $table[0]->toArray()
             : null;
+    }
+
+    public function forWaitingReservation(string $from, string $to, int $capacity): ?array
+    {
+        $table =
+            $this->model->whereRaw(
+                sprintf(
+                    $this->prepareSearchQuery($from, $to, $capacity),
+                    ReservationStatuses::RESERVATION_WAITING
+                )
+            )->get();
+        return count($table)
+            ? $table[0]->toArray()
+            : null;
+    }
+
+    public function forOverWaitingReservation(string $from, string $to, int $capacity): int
+    {
+        $table = DB::select(
+            "select table_id, count(table_id) as c from reservations where status = "
+            . ReservationStatuses::RESERVATION_WAITING
+            . " and reservations.from >= '"
+            . $from
+            . "' and reservations.to <= '"
+            . $to
+            . "' group by table_id order by c limit 1");
+        return $table[0]->table_id;
     }
 }
