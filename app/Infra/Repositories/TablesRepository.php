@@ -91,7 +91,7 @@ class TablesRepository implements TablesRepositoryInterface
                 . $from . "'
                    and reservations.to <= '"
                 . $to . "'
-                   and reservations.status in (1, 2)) and capacity >= "
+                   and reservations.status in (1, 2)) and capacity = "
                 . $capacity . " order by capacity asc limit 1")->get();
         return count($table)
             ? $table[0]->toArray()
