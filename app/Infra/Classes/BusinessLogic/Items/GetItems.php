@@ -2,6 +2,7 @@
 
 namespace App\Infra\Classes\BusinessLogic\Items;
 
+use App\Infra\Classes\BusinessLogic\Reservations\ReservationStatuses;
 use App\Infra\Classes\Common\Constants;
 use App\Infra\Classes\Common\Errors;
 use App\Infra\Interfaces\Repositories\ItemsRepositoryInterface;
@@ -46,6 +47,7 @@ class GetItems
         $reservation = $this->reservationsRepository
             ->where('id', $this->validator->getResource()->get('reservation_id'))
             ->where('customer_id', Auth::guard('customers')->id())
+            ->where('status', ReservationStatuses::RESERVATION_ACTIVE)
             ->select(['from', 'to'])
             ->first();
         if ($reservation instanceof Reservation) {
