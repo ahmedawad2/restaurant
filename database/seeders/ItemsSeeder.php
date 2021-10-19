@@ -11,6 +11,7 @@ class ItemsSeeder extends Seeder
     public function run()
     {
         $faker = Factory::create();
+
         Item::truncate();
 
         for ($i = 0; $i < 100; $i++) {
@@ -20,6 +21,7 @@ class ItemsSeeder extends Seeder
                 'qty' => rand(20, 60) * rand(1, 9) / 10
             ];
         }
+
         Item::insert($data);
     }
 }

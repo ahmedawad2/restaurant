@@ -2,11 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Infra\Classes\Common\SerialGenerator;
 use App\Models\Item;
 use App\Models\ItemPromoCode;
 use App\Models\PromoCode;
-use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class ItemPromoCodesSeeder extends Seeder

@@ -13,6 +13,7 @@ class ItemsSlotsSeeder extends Seeder
     public function run()
     {
         $weekDays = range(0, 6);
+
         ItemSlot::truncate();
 
         for ($i = 1; $i <= Item::count(); $i++) {
@@ -26,6 +27,7 @@ class ItemsSlotsSeeder extends Seeder
                 ];
             }
         }
+
         ItemSlot::insert(array_values($data));
     }
 }

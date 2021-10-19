@@ -12,8 +12,6 @@ class CustomersSeeder extends Seeder
 {
     public function run()
     {
-
-
         $faker = Factory::create();
         $phonePrefixes = ['11', '10', '12'];
         Customer::truncate();
