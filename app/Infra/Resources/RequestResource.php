@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class RequestResource implements ResourceInterface
 {
-    private $resource;
+    private Request $resource;
 
     public function __construct(Request $request)
     {
@@ -26,19 +26,8 @@ class RequestResource implements ResourceInterface
             }
             return $value;
         } else {
-            $value = $this->resource->get($explode[0]);
+            return $this->resource->get($explode[0]);
         }
-        return $value ?? $this->resource->file($input);
-    }
-
-    public function getResource()
-    {
-        return $this->resource;
-    }
-
-    public function header($input)
-    {
-        return $this->resource->header($input);
     }
 
     public function all(): ?array
