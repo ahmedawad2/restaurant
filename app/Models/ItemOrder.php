@@ -5,6 +5,7 @@ namespace App\Models;
 class ItemOrder extends Common
 {
     protected $guarded = ['id'];
+
     public $timestamps = false;
 
     public function item()

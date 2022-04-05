@@ -9,10 +9,13 @@ class ItemOrderPromoCode extends Common
     use HasJsonRelationships;
 
     protected $guarded = ['id'];
+
     protected $table = 'item_order_promo_code';
+
     protected $casts = [
         'promo_codes' => 'json',
     ];
+
     public $timestamps = false;
 
     public function item()
